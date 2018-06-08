@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by lihao
  * DATE:      2017/11/20
  */
-public class SpringContextUtil implements Serializable{
+public class SpringContextUtil implements Serializable {
 
     private SpringContextUtil() {
     }
@@ -28,6 +28,17 @@ public class SpringContextUtil implements Serializable{
         SpringContextUtil.applicationContext = applicationContext;
     }
 
+    /**
+     * 根据beanName获取bean
+     *
+     * @param name beanName
+     * @return bean的实例
+     * @throws BeansException BeansException
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T getBeanByName(String name) throws BeansException {
+        return applicationContext == null ? null : (T) applicationContext.getBean(name);
+    }
 
     /**
      * 根据beanName获取bean
